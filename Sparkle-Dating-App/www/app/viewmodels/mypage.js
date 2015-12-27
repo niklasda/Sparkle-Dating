@@ -22,7 +22,9 @@
                 postalCode = postalCode.replace(/\s+/g, '');
                 if (postalCode.length === 5) {
 
-                    var result = $.grep(postal, function (code) { return code.pnr === postalCode; });
+                    var result = $.grep(postal, function (code) {
+                        return code.pnr === postalCode;
+                    });
                     if (result && result.length === 1) {
                         city = result[0].city;
                     }
@@ -38,7 +40,7 @@
 
             that.editable(false);
 
-            http.get(brilliance.appbaseurl() + "/Mobile/AppSurvey/GetMyShortSurvey", '', { 'x-brilliance-token': token })
+            http.get(brilliance.appbaseurl() + "/Mobile/AppSurvey/GetMyShortSurvey", '', {'x-brilliance-token': token})
                 .then(function (response, textStatus) {
                     that.name(response.Survey.Name);
                     that.postalCode(response.Survey.PostalCode);
@@ -50,22 +52,22 @@
                     that.imgurl(brilliance.appbaseurl() + "/Mobile/AppPicture/MainPictureData/?token=" + token);
 
                     that.newPostalCode.subscribe(function (newPostalCodeValue) {
-                       var city = '';
-                       if (newPostalCodeValue) {
-                           newPostalCodeValue = newPostalCodeValue.replace(/\s+/g, '');
-                           if (newPostalCodeValue.length === 5) {
-                               city = that.getCityFromPostalCode(newPostalCodeValue);
-                           }
+                        var city = '';
+                        if (newPostalCodeValue) {
+                            newPostalCodeValue = newPostalCodeValue.replace(/\s+/g, '');
+                            if (newPostalCodeValue.length === 5) {
+                                city = that.getCityFromPostalCode(newPostalCodeValue);
+                            }
 
-                           that.newPostalCode(newPostalCodeValue);
-                       }
+                            that.newPostalCode(newPostalCodeValue);
+                        }
 
-                       that.newLookedupCity(city);
-                   });
+                        that.newLookedupCity(city);
+                    });
 
-               }).fail(function (jqXHR, textStatus, errorThrown) {
-                   that.errorMessage(textStatus);
-               });
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    that.errorMessage(textStatus);
+                });
         },
         edit: function () {
             this.editable(true);
@@ -89,13 +91,13 @@
                     fileType: file.type,
                     fileSize: file.size,
                     fileData64: $.base64('encode', e.target.result)
-                }
+                };
 
                 var token = localStorage.getItem("x-brilliance-token");
 
                 var that = this;
 
-                http.post(brilliance.appbaseurl() + "/Mobile/AppPicture/UploadPictureData", pictureDataModel, { 'x-brilliance-token': token })
+                http.post(brilliance.appbaseurl() + "/Mobile/AppPicture/UploadPictureData", pictureDataModel, {'x-brilliance-token': token})
                     .then(function (response, textStatus) {
                         //localStorage.setItem("x-brilliance-token", response.Token);
                         //that.message(response.Message);
@@ -110,9 +112,8 @@
 
             };
 
-            
         },
-        upload: function() {
+        upload: function () {
             var options = new FileUploadOptions();
             options.fileKey = "file";
             options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);

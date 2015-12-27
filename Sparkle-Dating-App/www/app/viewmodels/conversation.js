@@ -23,7 +23,7 @@
                 NewMessageBody: this.newMessageBody
             };
 
-            http.put(brilliance.appbaseurl() + "/Mobile/AppContactivity/PutNewMessage", data, { 'x-brilliance-token': token })
+            http.put(brilliance.appbaseurl() + "/Mobile/AppContactivity/PutNewMessage", data, {'x-brilliance-token': token})
                 .then(function (response, textStatus) {
                     that.newMessageBody('');
                     that.messages.push(response.AddedMessage);
@@ -34,8 +34,7 @@
                     } else {
                         brilliance.handleErrors(jqXHR, textStatus, errorThrown);
                     }
-                }
-                );
+                });
         },
         checkMessages: function (messageId) {
             "use strict";
@@ -51,12 +50,12 @@
             var data = {
                 OtherSurveyId: this.otherSurveyId,
                 LastMessageId: lastId
-            }
+            };
 
-            http.get(brilliance.appbaseurl() + "/Mobile/AppContactivity/GetNewMessages", data, { 'x-brilliance-token': token })
+            http.get(brilliance.appbaseurl() + "/Mobile/AppContactivity/GetNewMessages", data, {'x-brilliance-token': token})
                 .then(function (response, textStatus) {
-
-                    for (var i = 0; i < response.Conversation.Messages.length; i++) {
+                    var i;
+                    for (i = 0; i < response.Conversation.Messages.length; i += 1) {
                         that.messages.push(response.Conversation.Messages[i]);
                     }
 
@@ -68,8 +67,7 @@
                     //setTimeout(function () {
                     //    that.checkMessages(messageId);
                     //}, 5000);
-                }
-                );
+                });
         },
         compositionComplete: function () {
             $('#postNewMessage').focus();
@@ -88,7 +86,7 @@
             var token = localStorage.getItem("x-brilliance-token");
             var that = this;
 
-            http.get(brilliance.appbaseurl() + "/Mobile/AppContactivity/GetConversation", 'id=' + id, { 'x-brilliance-token': token })
+            http.get(brilliance.appbaseurl() + "/Mobile/AppContactivity/GetConversation", 'id=' + id, {'x-brilliance-token': token})
                 .then(function (response, textStatus) {
                     that.messages(response.Conversation.Messages);
                     that.otherSurveyName(response.Conversation.OtherSurveyName);

@@ -1,11 +1,11 @@
-"use strict";
 var pnr = [
-    {  }
+    {}
 ];
 
 var brilliance = {
 
     appbaseurl: function () {
+        "use strict";
         var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
 
         if (!app && document.URL.indexOf("localhost") > -1) {
@@ -16,6 +16,7 @@ var brilliance = {
     },
 
     handleErrors: function (jqXHR, textStatus, errorThrown) {
+        "use strict";
         if (jqXHR.status === 403) {
             window.location.href = '#login';
         }

@@ -3,20 +3,20 @@
 
     return {
         countries: ko.observableArray(['Sverige']),
-        selectedCountry: ko.observable("Sverige").extend({ required: true }),
+        selectedCountry: ko.observable("Sverige").extend({required: true}),
         postalCode: ko.observable("").extend({
-            required: { params: true, message: 'måste ange giltigt postnummer' },
-            min: { params: 10000, message: 'måste ange giltigt postnummer' },
-            minLength: { params: 5, message: 'måste ange giltigt postnummer' },
-            max: { params: 99000, message: 'måste ange giltigt postnummer' },
-            maxLength: { params: 5, message: 'måste ange giltigt postnummer' }
+            required: {params: true, message: 'måste ange giltigt postnummer'},
+            min: {params: 10000, message: 'måste ange giltigt postnummer'},
+            minLength: {params: 5, message: 'måste ange giltigt postnummer'},
+            max: {params: 99000, message: 'måste ange giltigt postnummer'},
+            maxLength: {params: 5, message: 'måste ange giltigt postnummer'}
         }),
         birthYear: ko.observable("").extend({
-            required: { params: true, message: 'måste ange giltigt födelseår' },
-            min: { params: 1901, message: 'måste ange giltigt födelseår' },
-            minLength: { params: 4, message: 'måste ange giltigt födelseår' },
-            max: { params: new Date().getFullYear() - 19, message: 'måste ange giltigt födelseår' },
-            maxLength: { params: 4, message: 'måste ange giltigt födelseår' }
+            required: {params: true, message: 'måste ange giltigt födelseår'},
+            min: {params: 1901, message: 'måste ange giltigt födelseår'},
+            minLength: {params: 4, message: 'måste ange giltigt födelseår'},
+            max: {params: new Date().getFullYear() - 19, message: 'måste ange giltigt födelseår'},
+            maxLength: {params: 4, message: 'måste ange giltigt födelseår'}
         }),
         lookedupCity: ko.observable(""),
 
@@ -26,7 +26,9 @@
                 postalCode = postalCode.replace(/\s+/g, '');
                 if (postalCode.length === 5) {
 
-                    var result = $.grep(postal, function (code) { return code.pnr === postalCode; });
+                    var result = $.grep(postal, function (code) {
+                        return code.pnr === postalCode;
+                    });
                     if (result && result.length === 1) {
                         city = result[0].city;
                     }
@@ -64,7 +66,7 @@
         },
         onClick: function () {
 
-            var result = ko.validation.group(this, { deep: false });
+            var result = ko.validation.group(this, {deep: false});
             var valid = result().length === 0;
 
             var city = this.getCityFromPostalCode(this.postalCode());

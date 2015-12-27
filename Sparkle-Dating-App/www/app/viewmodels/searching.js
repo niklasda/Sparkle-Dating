@@ -21,14 +21,14 @@
             });
 
 
-            http.put(brilliance.appbaseurl() + "/Mobile/AppContactivity/PutNewFavourite", data, { 'x-brilliance-token': token })
-                   .then(function (response, textStatus) {
-                       $("#prof_" + surveyId).addClass('fa-check');
-                       $("#prof_" + surveyId).fadeIn();
-                   }).fail(function (jqXHR, textStatus, errorThrown) {
-                       $("#prof_" + surveyId).addClass('fa-user-plus');
-                       $("#prof_" + surveyId).fadeIn();
-                   });
+            http.put(brilliance.appbaseurl() + "/Mobile/AppContactivity/PutNewFavourite", data, {'x-brilliance-token': token})
+                .then(function (response, textStatus) {
+                    $("#prof_" + surveyId).addClass('fa-check');
+                    $("#prof_" + surveyId).fadeIn();
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    $("#prof_" + surveyId).addClass('fa-user-plus');
+                    $("#prof_" + surveyId).fadeIn();
+                });
         },
         startConversation: function (surveyId) {
             window.location.href = '#conversation/' + surveyId;
@@ -67,12 +67,14 @@
             var that = this;
 
             var postalCode = "" + nbrOfExistingHits;
-            
-            http.get(brilliance.appbaseurl() + "/Mobile/AppSearch/Search", 'postalCode=' + postalCode, { 'x-brilliance-token': token })
+             
+            http.get(brilliance.appbaseurl() + "/Mobile/AppSearch/Search", 'postalCode=' + postalCode, {'x-brilliance-token': token})
                 .then(function (response, textStatus) {
                     that.searchResults = response.SearchResults;
 
-                    setTimeout(function () { that.initCarousel(that) }, 1000);
+                    setTimeout(function () {
+                        that.initCarousel(that);
+                    }, 1000);
 
                 }).fail(brilliance.handleErrors);
         },

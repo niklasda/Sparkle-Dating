@@ -16,7 +16,7 @@
             var token = localStorage.getItem("x-brilliance-token");
             var that = this;
 
-            http.get(brilliance.appbaseurl() + "/Mobile/AppContactivity/GetConversationHeads", '', { 'x-brilliance-token': token })
+            http.get(brilliance.appbaseurl() + "/Mobile/AppContactivity/GetConversationHeads", '', {'x-brilliance-token': token})
                 .then(function (response, textStatus) {
                     that.heads(response.Heads);
                 }).fail(brilliance.handleErrors);

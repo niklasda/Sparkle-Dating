@@ -5,7 +5,6 @@
         
         message: ko.observable(""),
         activate: function () {
-
         }
     };
 });

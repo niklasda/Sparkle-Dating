@@ -12,7 +12,7 @@
             var token = localStorage.getItem("x-brilliance-token");
             var that = this;
 
-            http.get(brilliance.appbaseurl() + "/Mobile/AppSurvey/GetSurveySettings", '', { 'x-brilliance-token': token })
+            http.get(brilliance.appbaseurl() + "/Mobile/AppSurvey/GetSurveySettings", '', {'x-brilliance-token': token})
                 .then(function (response, textStatus) {
                     that.ageMin(response.Settings.SearchAgeMin);
                     that.ageMax(response.Settings.SearchAgeMax);
@@ -25,7 +25,6 @@
                     if (res === 'Ja') {
                         window.location.href = '#logout/remove';
                     }
-                    
                 });
             return false;
         },
@@ -39,7 +38,6 @@
                 max: 85,
                 values: [25, 45],
                 slide: function (event, ui) {
-                    
                     that.ageMin(ui.values[0]);
                     that.ageMax(ui.values[1]);
                 }
@@ -51,7 +49,6 @@
                 max: 85,
                 values: [45],
                 slide: function (event, ui) {
-                    
                     //that.distanceMin(ui.values[0]);
                     that.distanceMax(ui.values[0]);
                 }

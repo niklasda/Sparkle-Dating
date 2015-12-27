@@ -3,30 +3,29 @@
 
     return {
         username: ko.observable("").extend({
-            required: { params: true, message: 'användarnamn måste anges' },
-            minLength: { params: 5, message: 'användarnamn måste vara minst {0} tecken' }
+            required: {params: true, message: 'användarnamn måste anges'},
+            minLength: {params: 5, message: 'användarnamn måste vara minst {0} tecken'}
         }),
         password: ko.observable("").extend({
-            required: { params: true, message: 'lösenord måste anges' },
-            minLength: { params: 6, message: 'lösenord måste vara minst {0} tecken' }
+            required: {params: true, message: 'lösenord måste anges'},
+            minLength: {params: 6, message: 'lösenord måste vara minst {0} tecken'}
         }),
         email: ko.observable("").extend({
-            required: { params: true, message: 'måste ange giltig e-post' },
-            minLength: { params: 5, message: 'måste ange giltig e-post' },
-            email: { params: true, message: 'måste ange giltig e-post' }
+            required: {params: true, message: 'måste ange giltig e-post'},
+            minLength: {params: 5, message: 'måste ange giltig e-post'},
+            email: {params: true, message: 'måste ange giltig e-post'}
         }),
         termsAccepted: ko.observable(false),
 
         message: ko.observable(""),
         activate: function () {
-            
         },
         onBackClick: function () {
             return true;
         },
         onClick: function () {
 
-            var result = ko.validation.group(this, { deep: false });
+            var result = ko.validation.group(this, {deep: false});
             var valid = result().length === 0;
 
             if (!this.termsAccepted()) {
@@ -58,7 +57,7 @@
                     username: brilliance.signup3.username,
                     password: brilliance.signup3.password,
                     email: brilliance.signup3.email
-                }
+                };
                 var that = this;
 
                 http.post(brilliance.appbaseurl() + "/Mobile/AppAccount/SignupSubmit", allData, '')
