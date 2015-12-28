@@ -19,7 +19,8 @@
                     });
 
                 localStorage.removeItem("x-brilliance-token");
-                window.location.href = '';
+                window.location.href = '#home';
+                window.location.reload(true);
             } else if (action === "deactivate") {
             } else if (action === "remove") {
             }

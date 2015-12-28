@@ -14,9 +14,11 @@
 
             http.get(brilliance.appbaseurl() + "/Mobile/AppSurvey/GetSurveySettings", '', {'x-brilliance-token': token})
                 .then(function (response, textStatus) {
-                    that.ageMin(response.Settings.SearchAgeMin);
-                    that.ageMax(response.Settings.SearchAgeMax);
-                    that.distanceMax(response.Settings.SearchDistanceMax);
+                    if (response.Settings !== undefined) {
+                        that.ageMin(response.Settings.SearchAgeMin);
+                        that.ageMax(response.Settings.SearchAgeMax);
+                        that.distanceMax(response.Settings.SearchDistanceMax);
+                    }
                 }).fail(brilliance.handleErrors);
         },
         removeAccount: function () {

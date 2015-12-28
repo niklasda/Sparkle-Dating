@@ -29,7 +29,8 @@
                     .then(function (response, textStatus) {
                         localStorage.setItem("x-brilliance-token", response.Token);
                         //that.message(response.Message);
-                        window.location.href = '';
+                        window.location.href = '#home';
+                        window.location.reload(true);
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         if (jqXHR.responseJSON) {
                             that.message(jqXHR.responseJSON.Message);
