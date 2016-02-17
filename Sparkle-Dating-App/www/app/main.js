@@ -1,16 +1,16 @@
 requirejs.config({
     paths: {
-        'text': '../Scripts/text',
-        'durandal': '../Scripts/durandal',
-        'plugins': '../Scripts/durandal/plugins',
-        'transitions': '../Scripts/durandal/transitions',
-        'knockout': '../Scripts/knockout-3.4.0',
-        'knockout-validation': '../Scripts/knockout.validation',
-        'bootstrap': '../Scripts/bootstrap',
-        'jquery': '../Scripts/jquery-2.1.4',
-        'base64': '../Scripts/jquery.base64',
-        'jqui': '../Scripts/jquery-ui-1.11.4',
-        'slick': '../Scripts/slick/slick'
+        'text': '../scripts/text',
+        'durandal': '../scripts/durandal',
+        'plugins': '../scripts/durandal/plugins',
+        'transitions': '../scripts/durandal/transitions',
+        'knockout': '../scripts/knockout-3.4.0',
+        'knockout-validation': '../scripts/knockout.validation',
+        'bootstrap': '../scripts/bootstrap',
+        'jquery': '../scripts/jquery-2.1.4',
+        'base64': '../scripts/jquery.base64',
+        'jqui': '../scripts/jquery-ui-1.11.4',
+        'slick': '../scripts/slick/slick'
     }
 });
 
