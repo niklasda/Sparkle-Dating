@@ -4,7 +4,6 @@
   <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Dahlman Labs</author>
   <content src="index.html" />
-  <access origin="http://localhost:4400/" />
   <vs:features />
   <preference name="SplashScreen" value="screen" />
   <preference name="windows-target-version" value="8.1" />
@@ -105,9 +104,6 @@
     <splash src="res/screens/wp8/SplashScreenImage.jpg" width="480" height="800" />
   </platform>
   <preference name="Orientation" value="portrait" />
-  <vs:plugin name="cordova-plugin-file-transfer" version="1.4.0" />
-  <vs:plugin name="cordova-plugin-file" version="3.0.0" />
-  <vs:plugin name="cordova-plugin-console" version="1.0.2" />
   <vs:platformSpecificValues>
     <vs:platformSpecificWidget platformName="windows" version="1.0.0.0">
       <vs:name>Sparkle Dating</vs:name>
@@ -118,5 +114,8 @@
   <preference name="InAppBrowserStorageEnabled" value="True" />
   <preference name="SuppressesIncrementalRendering" value="True" />
   <access origin="http://localhost:45562/" />
-  <access origin="https://sparkle-dating.azurewebsites.net/" />
+  <access origin="https://sparkle-dating.azurewebsites.net" />
+  <plugin name="cordova-plugin-file-transfer" version="1.4.0" />
+  <plugin name="cordova-plugin-file" version="3.0.0" />
+  <plugin name="cordova-plugin-console" version="1.0.2" />
 </widget>

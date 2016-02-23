@@ -9,9 +9,9 @@ var brilliance = {
         var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
 
         if (!app && document.URL.indexOf("localhost") > -1) {
-            return "http://localhost:45562/";
+            return "http://localhost:45562";
         } else {
-            return "https://sparkle-dating.azurewebsites.net/";
+            return "https://sparkle-dating.azurewebsites.net";
         }
     },
 
