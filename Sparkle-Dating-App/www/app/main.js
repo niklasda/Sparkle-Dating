@@ -7,7 +7,7 @@ requirejs.config({
         'knockout': '../scripts/knockout-3.4.0',
         'knockout-validation': '../scripts/knockout.validation',
         'bootstrap': '../scripts/bootstrap',
-        'jquery': '../scripts/jquery-2.1.4',
+        'jquery': '../scripts/jquery-2.2.1',
         'base64': '../scripts/jquery.base64',
         'jqui': '../scripts/jquery-ui-1.11.4',
         'slick': '../scripts/slick/slick'
