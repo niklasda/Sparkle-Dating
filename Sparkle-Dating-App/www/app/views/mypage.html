@@ -1,5 +1,5 @@
 ﻿<section>
-    <h2>Min sida</h2>
+    <h2>Min profil</h2>
     <br />
 
     <div style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; ">
@@ -30,17 +30,23 @@
         </div>
 
         <div data-bind="if: editable">
-            <div style="width: 80%">
+            <div>
+                <a class="btn btn-default" data-bind="click: pickFile">Välj bild</a>
+                <a class="btn btn-default" data-bind="click: openCamera">Kamera <i class="fa fa-camera"></i></a>
+                <br />
+            </div>
+             <div style="width: 80%">
                 <span>Nytt postnummer:</span> <span data-bind="text: newLookedupCity"></span><br />
-                <input class="form-control" data-bind="value: newPostalCode, valueUpdate: 'afterkeydown'" /><br />
+                 <input class="form-control" data-bind="value: newPostalCode, valueUpdate: 'afterkeydown'"/>
+                 <br />
+            </div>
+           
+            <div>
+                <span data-bind="text: message" style="padding-left: 10px"></span>
             </div>
             <div>
-                <input type="file" data-bind="event: { change: function() { uploadImage($element.files[0]) } }" /> 
-                <a class="btn btn-default" data-bind="click: upload">Ladd upp bild</a>
-
+                <a class="btn btn-default transparent-button" data-bind="click: save">Spara</a>
             </div>
-            <a class="btn btn-default transparent-button" data-bind="click: save">Spara</a>
-
         </div>
 
     </div>

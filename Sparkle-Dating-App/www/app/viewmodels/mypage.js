@@ -2,7 +2,7 @@
     "use strict";
 
     return {
-        errorMessage: ko.observable(),
+        message: ko.observable(),
         //survey: ko.observable(),
         name: ko.observable(),
         postalCode: ko.observable(),
@@ -15,6 +15,7 @@
         editable: ko.observable(false),
         newPostalCode: ko.observable(),
         newLookedupCity: ko.observable(),
+        newPicture: ko.observable(),
 
         getCityFromPostalCode: function (postalCode) {
             var city = '';
@@ -66,7 +67,7 @@
                     });
 
                 }).fail(function (jqXHR, textStatus, errorThrown) {
-                    that.errorMessage(textStatus);
+                    that.message(textStatus);
                 });
         },
         edit: function () {
@@ -75,14 +76,18 @@
         save: function () {
             this.editable(false);
         },
-        uploadImage: function (file) {
+        /*uploadImage: function (file) {
             //var slicedFile = file.slice(10, 30);
+            this.newPicture(file);
+            this.message(file.name);
+
+                var that = this;
 
             var reader = new FileReader();
-            reader.readAsText(file);
             reader.onload = function (e) {
                 // browser completed reading file - display it
-               // alert(e.target.result);
+
+                alert(file.name);
 
                 //$.base64('encode', e.target.result);
 
@@ -95,7 +100,6 @@
 
                 var token = localStorage.getItem("x-brilliance-token");
 
-                var that = this;
 
                 http.post(brilliance.appbaseurl() + "/Mobile/AppPicture/UploadPictureData", pictureDataModel, {'x-brilliance-token': token})
                     .then(function (response, textStatus) {
@@ -111,12 +115,36 @@
                     });
 
             };
+            reader.readAsText(file);
 
-        },
-        upload: function () {
+
+        },*/
+        openCamera: function () {
+            var that = this;
+
+            var win = function (r) {
+                that.imgurl(r);
+                console.log("Code = " + r);
+            }
+
+            var fail = function (error) {
+                console.log("An error has occurred: " + error);
+            }
+            navigator.camera.getPicture(win,
+                            fail,
+                            {
+                                quality: 30,
+                                destinationType: navigator.camera.DestinationType.FILE_URI,
+                                sourceType: navigator.camera.PictureSourceType.CAMERA, // PHOTOLIBRARY   /  CAMERA
+                                targetWidth: 800,
+                                targetHeight: 800,
+                                correctOrientation: true
+                            });
+
+            /*
             var options = new FileUploadOptions();
             options.fileKey = "file";
-            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+            options.fileName = this.newPicture().name;//.substr(this.newPicture().name.lastIndexOf('/') +1);
             options.mimeType = "image/jpeg";
 
             var params = new Object();
@@ -127,7 +155,30 @@
             options.chunkedMode = false;
 
             var ft = new FileTransfer();
-            ft.upload(imageURI, "http://yourdomain.com/upload.php", win, fail, options);
+            ft.upload(this.newPicture().name, "http://yourdomain.com/upload.php", win, fail, options);
+            */
+        },
+        pickFile: function() {
+            var that = this;
+
+            var win = function (r) {
+                that.imgurl(r);
+                console.log("Code = " + r);
+            }
+
+            var fail = function(error) {
+                console.log("An error has occurred: " + error);
+            }
+            navigator.camera.getPicture(win,
+                fail,
+                {
+                    quality: 30,
+                    destinationType: navigator.camera.DestinationType.FILE_URI,
+                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY, // PHOTOLIBRARY   /  CAMERA
+                    targetWidth: 800,
+                    targetHeight: 800,
+                    correctOrientation: true
+                });
         }
     };
 });
