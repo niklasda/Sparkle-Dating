@@ -18,7 +18,7 @@
                 wantWoman: this.wantWoman()
             };
 
-            brilliance.signup1 = data;
+            sparkle.signup1 = data;
 
             return true;
         }

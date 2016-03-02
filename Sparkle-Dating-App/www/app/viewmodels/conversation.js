@@ -23,7 +23,7 @@
                 NewMessageBody: this.newMessageBody
             };
 
-            http.put(brilliance.appbaseurl() + "/Mobile/AppContactivity/PutNewMessage", data, {'x-brilliance-token': token})
+            http.put(sparkle.appbaseurl() + "/Mobile/AppContactivity/PutNewMessage", data, { 'x-brilliance-token': token })
                 .then(function (response, textStatus) {
                     that.newMessageBody('');
                     that.messages.push(response.AddedMessage);
@@ -32,7 +32,7 @@
                     if (jqXHR.status === 400) {
                         app.showMessage('Failed to send message!', 'Brilliance');
                     } else {
-                        brilliance.handleErrors(jqXHR, textStatus, errorThrown);
+                        sparkle.handleErrors(jqXHR, textStatus, errorThrown);
                     }
                 });
         },
@@ -52,7 +52,7 @@
                 LastMessageId: lastId
             };
 
-            http.get(brilliance.appbaseurl() + "/Mobile/AppContactivity/GetNewMessages", data, {'x-brilliance-token': token})
+            http.get(sparkle.appbaseurl() + "/Mobile/AppContactivity/GetNewMessages", data, { 'x-brilliance-token': token })
                 .then(function (response, textStatus) {
                     var i;
                     for (i = 0; i < response.Conversation.Messages.length; i += 1) {
@@ -86,12 +86,12 @@
             var token = localStorage.getItem("x-brilliance-token");
             var that = this;
 
-            http.get(brilliance.appbaseurl() + "/Mobile/AppContactivity/GetConversation", 'id=' + id, {'x-brilliance-token': token})
+            http.get(sparkle.appbaseurl() + "/Mobile/AppContactivity/GetConversation", 'id=' + id, { 'x-brilliance-token': token })
                 .then(function (response, textStatus) {
                     that.messages(response.Conversation.Messages);
                     that.otherSurveyName(response.Conversation.OtherSurveyName);
 
-                }).fail(brilliance.handleErrors);
+                }).fail(sparkle.handleErrors);
         }
     };
 });

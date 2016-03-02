@@ -6,7 +6,7 @@
         heads: ko.observableArray(),
         buildUrl: function (id) {
             var token = localStorage.getItem("x-brilliance-token");
-            return brilliance.appbaseurl() + "/Mobile/AppPicture/MainPictureDataFor/" + id + "?token=" + token;
+            return sparkle.appbaseurl() + "/Mobile/AppPicture/MainPictureDataFor/" + id + "?token=" + token;
         },
         rowClick: function (row) {
             window.location.href = '#conversation/' + row.OtherSurveyId;
@@ -16,17 +16,17 @@
             var token = localStorage.getItem("x-brilliance-token");
             var that = this;
 
-            http.get(brilliance.appbaseurl() + "/Mobile/AppContactivity/GetConversationHeads", '', {'x-brilliance-token': token})
+            http.get(sparkle.appbaseurl() + "/Mobile/AppContactivity/GetConversationHeads", '', { 'x-brilliance-token': token })
                 .then(function (response, textStatus) {
                     that.heads(response.Heads);
-                }).fail(brilliance.handleErrors);
+                }).fail(sparkle.handleErrors);
         }
 
-        //http.remove(brilliance.appbaseurl() + "/Mobile/AppContactivity/DeleteFavourite", data, { 'x-brilliance-token': token })
+        //http.remove(sparkle.appbaseurl() + "/Mobile/AppContactivity/DeleteFavourite", data, { 'x-brilliance-token': token })
         //    .then(function (response, textStatus) {
         //       that.newMessageBody(response.Message);
         //        //that.otherSurveyName(response.Conversation.OtherSurveyName);
 
-        //    }).fail(brilliance.handleErrors);
+        //    }).fail(sparkle.handleErrors);
     };
 });

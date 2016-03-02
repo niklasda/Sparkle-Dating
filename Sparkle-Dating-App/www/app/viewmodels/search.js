@@ -9,12 +9,12 @@
         myPostalCode: ko.observable(),
         search: function () {
             //app.showMessage('Searching for ' + this.postalCode() + '!', 'Brilliance');
-            brilliance.searchPostalCode = this.postalCode();
+            sparkle.searchPostalCode = this.postalCode();
             window.location.href = '#searching';
         },
         searchClose: function () {
             //app.showMessage('Searching for ' + this.myPostalCode() + '!', 'Brilliance');
-            brilliance.searchPostalCode = this.myPostalCode();
+            sparkle.searchPostalCode = this.myPostalCode();
             window.location.href = '#searching';
         },
         activate: function () {
@@ -41,13 +41,13 @@
                 that.lookedupCity(city);
             });
 
-            http.get(brilliance.appbaseurl() + "/Mobile/AppSurvey/GetMyShortSurvey", '', {'x-brilliance-token': token})
+            http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetMyShortSurvey", '', { 'x-brilliance-token': token })
                 .then(function (response, textStatus) {
                     that.myPostalCode(response.Survey.PostalCode);
                     that.myCity(response.Survey.City);
                     that.age(response.Survey.Age);
 
-                }).fail(brilliance.handleErrors);
+                }).fail(sparkle.handleErrors);
         }
     };
 });

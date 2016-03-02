@@ -2,7 +2,6 @@
     "use strict";
 
     return {
-        
         message: ko.observable(""),
         activate: function () {
         }

@@ -10,10 +10,10 @@
             var token = localStorage.getItem("x-brilliance-token");
             var that = this;
 
-            http.get(brilliance.appbaseurl() + "/Mobile/AppSurvey/GetShortSurvey", 'id=' + id, {'x-brilliance-token': token})
+            http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetShortSurvey", 'id=' + id, {'x-brilliance-token': token})
                 .then(function (response, textStatus) {
                     that.survey(response.Survey);
-                    that.imgurl(brilliance.appbaseurl() + "/Mobile/AppPicture/MainPictureDataFor/" + id + "?token=" + token);
+                    that.imgurl(sparkle.appbaseurl() + "/Mobile/AppPicture/MainPictureDataFor/" + id + "?token=" + token);
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     that.errorMessage(textStatus);
                 });

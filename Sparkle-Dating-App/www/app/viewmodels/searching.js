@@ -6,7 +6,7 @@
         searchResults: [],
         buildUrl: function (id) {
             var token = localStorage.getItem("x-brilliance-token");
-            return brilliance.appbaseurl() + "/Mobile/AppPicture/MainPictureDataFor/" + id + "?token=" + token;
+            return sparkle.appbaseurl() + "/Mobile/AppPicture/MainPictureDataFor/" + id + "?token=" + token;
         },
         addFavourite: function (surveyId) {
             var token = localStorage.getItem("x-brilliance-token");
@@ -21,7 +21,7 @@
             });
 
 
-            http.put(brilliance.appbaseurl() + "/Mobile/AppContactivity/PutNewFavourite", data, {'x-brilliance-token': token})
+            http.put(sparkle.appbaseurl() + "/Mobile/AppContactivity/PutNewFavourite", data, { 'x-brilliance-token': token })
                 .then(function (response, textStatus) {
                     $("#prof_" + surveyId).addClass('fa-check');
                     $("#prof_" + surveyId).fadeIn();
@@ -68,7 +68,7 @@
 
             var postalCode = "" + nbrOfExistingHits;
              
-            http.get(brilliance.appbaseurl() + "/Mobile/AppSearch/Search", 'postalCode=' + postalCode, {'x-brilliance-token': token})
+            http.get(sparkle.appbaseurl() + "/Mobile/AppSearch/Search", 'postalCode=' + postalCode, { 'x-brilliance-token': token })
                 .then(function (response, textStatus) {
                     that.searchResults = response.SearchResults;
 
@@ -76,7 +76,7 @@
                         that.initCarousel(that);
                     }, 1000);
 
-                }).fail(brilliance.handleErrors);
+                }).fail(sparkle.handleErrors);
         },
         initCarousel: function (that) {
             var lastCount = $("#carousel").slick("getSlick").slideCount;

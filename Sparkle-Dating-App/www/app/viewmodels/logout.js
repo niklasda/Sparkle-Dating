@@ -9,7 +9,7 @@
             var that = this;
 
             if (action === "logout") {
-                http.post(brilliance.appbaseurl() + "/Mobile/AppAccount/Logout", '', {'x-brilliance-token': token})
+                http.post(sparkle.appbaseurl() + "/Mobile/AppAccount/Logout", '', { 'x-brilliance-token': token })
                     .then(function (response, textStatus) {
                         that.message(response.Message);
                     }).fail(function (jqXHR, textStatus, errorThrown) {

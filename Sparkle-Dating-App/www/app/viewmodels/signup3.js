@@ -42,25 +42,25 @@
                     email: this.email()
                 };
 
-                brilliance.signup3 = data;
+                sparkle.signup3 = data;
 
                 var allData = {
-                    amMan: brilliance.signup1.amMan,
-                    amWoman: brilliance.signup1.amWoman,
-                    wantMan: brilliance.signup1.wantMan,
-                    wantWoman: brilliance.signup1.wantWoman,
+                    amMan: sparkle.signup1.amMan,
+                    amWoman: sparkle.signup1.amWoman,
+                    wantMan: sparkle.signup1.wantMan,
+                    wantWoman: sparkle.signup1.wantWoman,
 
-                    country: brilliance.signup2.country,
-                    postalCode: brilliance.signup2.postalCode,
-                    birthYear: brilliance.signup2.birthYear,
+                    country: sparkle.signup2.country,
+                    postalCode: sparkle.signup2.postalCode,
+                    birthYear: sparkle.signup2.birthYear,
 
-                    username: brilliance.signup3.username,
-                    password: brilliance.signup3.password,
-                    email: brilliance.signup3.email
+                    username: sparkle.signup3.username,
+                    password: sparkle.signup3.password,
+                    email: sparkle.signup3.email
                 };
                 var that = this;
 
-                http.post(brilliance.appbaseurl() + "/Mobile/AppAccount/SignupSubmit", allData, '')
+                http.post(sparkle.appbaseurl() + "/Mobile/AppAccount/SignupSubmit", allData, '')
                     .then(function (response, textStatus) {
                         
                         that.message(response.Message);

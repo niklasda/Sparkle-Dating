@@ -83,9 +83,9 @@
                     country: this.selectedCountry(),
                     postalCode: this.postalCode(),
                     birthYear: this.birthYear()
-                }
+                };
 
-                brilliance.signup2 = data;
+                sparkle.signup2 = data;
 
                 return true;
             } else {
