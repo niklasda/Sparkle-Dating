@@ -9,8 +9,8 @@ var sparkle = {
         var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
 
         if (!app && document.URL.indexOf("localhost") > -1) {
-            return "https://sparkle-dating.azurewebsites.net";
-            // return "http://localhost:45562";
+            //return "https://sparkle-dating.azurewebsites.net";
+             return "http://localhost:45562";
         } else {
             return "https://sparkle-dating.azurewebsites.net";
         }

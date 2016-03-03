@@ -7,10 +7,10 @@
         imgurl: ko.observable(),
         activate: function (id) {
 
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             var that = this;
 
-            http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetShortSurvey", 'id=' + id, {'x-brilliance-token': token})
+            http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetShortSurvey", 'id=' + id, { 'x-sparkle-token': token })
                 .then(function (response, textStatus) {
                     that.survey(response.Survey);
                     that.imgurl(sparkle.appbaseurl() + "/Mobile/AppPicture/MainPictureDataFor/" + id + "?token=" + token);

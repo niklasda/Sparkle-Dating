@@ -15,7 +15,7 @@
                 return;
             }
 
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             var that = this;
 
             var data = {
@@ -23,7 +23,7 @@
                 NewMessageBody: this.newMessageBody
             };
 
-            http.put(sparkle.appbaseurl() + "/Mobile/AppContactivity/PutNewMessage", data, { 'x-brilliance-token': token })
+            http.put(sparkle.appbaseurl() + "/Mobile/AppContactivity/PutNewMessage", data, { 'x-sparkle-token': token })
                 .then(function (response, textStatus) {
                     that.newMessageBody('');
                     that.messages.push(response.AddedMessage);
@@ -39,7 +39,7 @@
         checkMessages: function (messageId) {
             "use strict";
 
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             var that = this;
 
             var lastId = 0;
@@ -52,7 +52,7 @@
                 LastMessageId: lastId
             };
 
-            http.get(sparkle.appbaseurl() + "/Mobile/AppContactivity/GetNewMessages", data, { 'x-brilliance-token': token })
+            http.get(sparkle.appbaseurl() + "/Mobile/AppContactivity/GetNewMessages", data, { 'x-sparkle-token': token })
                 .then(function (response, textStatus) {
                     var i;
                     for (i = 0; i < response.Conversation.Messages.length; i += 1) {
@@ -83,10 +83,10 @@
         activate: function (id) {
 
             this.otherSurveyId = id;
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             var that = this;
 
-            http.get(sparkle.appbaseurl() + "/Mobile/AppContactivity/GetConversation", 'id=' + id, { 'x-brilliance-token': token })
+            http.get(sparkle.appbaseurl() + "/Mobile/AppContactivity/GetConversation", 'id=' + id, { 'x-sparkle-token': token })
                 .then(function (response, textStatus) {
                     that.messages(response.Conversation.Messages);
                     that.otherSurveyName(response.Conversation.OtherSurveyName);

@@ -36,12 +36,12 @@
         },
         activate: function () {
 
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             var that = this;
 
             that.editable(false);
 
-            http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetMyShortSurvey", '', { 'x-brilliance-token': token })
+            http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetMyShortSurvey", '', { 'x-sparkle-token': token })
                 .then(function (response, textStatus) {
                     that.name(response.Survey.Name);
                     that.postalCode(response.Survey.PostalCode);
@@ -76,35 +76,35 @@
         save: function () {
             this.editable(false);
         },
-        /*uploadImage: function (file) {
+        /*uploadImage: function () {
             //var slicedFile = file.slice(10, 30);
-            this.newPicture(file);
-            this.message(file.name);
+           // this.newPicture(file);
 
                 var that = this;
+                this.message(that.imgurl());
 
             var reader = new FileReader();
             reader.onload = function (e) {
                 // browser completed reading file - display it
 
-                alert(file.name);
+                //alert(that.imgurl());
 
                 //$.base64('encode', e.target.result);
 
                 var pictureDataModel = {
-                    fileName: file.name,
-                    fileType: file.type,
-                    fileSize: file.size,
+                    fileName: e.target.name,
+                    fileType: e.target.type,
+                    fileSize: e.target.size,
                     fileData64: $.base64('encode', e.target.result)
                 };
 
-                var token = localStorage.getItem("x-brilliance-token");
+                var token = localStorage.getItem("x-sparkle-token");
 
 
-                http.post(sparkle.appbaseurl() + "/Mobile/AppPicture/UploadPictureData", pictureDataModel, {'x-brilliance-token': token})
+                http.post(sparkle.appbaseurl() + "/Mobile/AppPicture/UploadPictureData", pictureDataModel, {'x-sparkle-token': token})
                     .then(function (response, textStatus) {
-                        //localStorage.setItem("x-brilliance-token", response.Token);
-                        //that.message(response.Message);
+                        //localStorage.setItem("x-sparkle-token", response.Token);
+                        that.message(response.Message);
                         //window.location.href = '';
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         if (jqXHR.responseJSON) {
@@ -115,7 +115,7 @@
                     });
 
             };
-            reader.readAsText(file);
+            reader.readAsText(that.imgurl());
 
 
         },*/
@@ -132,34 +132,44 @@
             };
 
             navigator.camera.getPicture(win,
-                    fail,
-                    {
+                    fail, {
                         quality: 30,
                         destinationType: navigator.camera.DestinationType.FILE_URI,
                         sourceType: navigator.camera.PictureSourceType.CAMERA, // PHOTOLIBRARY   /  CAMERA
+                        encodingType: Camera.EncodingType.PNG,
                         targetWidth: 800,
                         targetHeight: 800,
                         correctOrientation: true
                     });
-
-            /*
+        },
+        upload: function () {
             var options = new FileUploadOptions();
             options.fileKey = "file";
-            options.fileName = this.newPicture().name;//.substr(this.newPicture().name.lastIndexOf('/') +1);
-            options.mimeType = "image/jpeg";
+            options.fileName = this.imgurl(); //.substr(this.newPicture().name.lastIndexOf('/') +1);
 
-            var params = new Object();
-            params.value1 = "test";
-            params.value2 = "param";
+            options.mimeType = "image/png";
+            //options.params = params;
+            options.chunkedMode = true;
 
-            options.params = params;
-            options.chunkedMode = false;
+            var token = localStorage.getItem("x-sparkle-token");
+
+            options.headers = {
+                Connection: 'close',
+                'x-sparkle-token': token
+            };
+
+            var win = function (r) {
+                console.log("Code = " + r);
+            };
+
+            var fail = function (error) {
+                console.log("An error has occurred: " + error);
+            };
 
             var ft = new FileTransfer();
-            ft.upload(this.newPicture().name, "http://yourdomain.com/upload.php", win, fail, options);
-            */
+            ft.upload(this.imgurl(), sparkle.appbaseurl() + "/Mobile/AppPicture/UploadPictureData", win, fail, options);
         },
-        pickFile: function() {
+        pickFile: function () {
             var that = this;
 
             var win = function(r) {
@@ -171,8 +181,7 @@
                 console.log("An error has occurred: " + error);
             };
             navigator.camera.getPicture(win,
-                    fail,
-                    {
+                    fail, {
                         quality: 30,
                         destinationType: navigator.camera.DestinationType.FILE_URI,
                         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY, // PHOTOLIBRARY   /  CAMERA

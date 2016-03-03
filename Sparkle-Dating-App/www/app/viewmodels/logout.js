@@ -5,11 +5,11 @@
         message: ko.observable(),
         activate: function (action) {
              
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             var that = this;
 
             if (action === "logout") {
-                http.post(sparkle.appbaseurl() + "/Mobile/AppAccount/Logout", '', { 'x-brilliance-token': token })
+                http.post(sparkle.appbaseurl() + "/Mobile/AppAccount/Logout", '', { 'x-sparkle-token': token })
                     .then(function (response, textStatus) {
                         that.message(response.Message);
                     }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -18,7 +18,7 @@
 
                     });
 
-                localStorage.removeItem("x-brilliance-token");
+                localStorage.removeItem("x-sparkle-token");
                 window.location.href = '#home';
                 window.location.reload(true);
             } else if (action === "deactivate") {

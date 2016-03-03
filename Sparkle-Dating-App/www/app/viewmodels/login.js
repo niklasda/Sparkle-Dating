@@ -27,7 +27,7 @@
 
                 http.post(sparkle.appbaseurl() + "/Mobile/AppAccount/LoginSubmit", loginModel, '')
                     .then(function (response, textStatus) {
-                        localStorage.setItem("x-brilliance-token", response.Token);
+                        localStorage.setItem("x-sparkle-token", response.Token);
                         //that.message(response.Message);
                         window.location.href = '#home';
                         window.location.reload(true);

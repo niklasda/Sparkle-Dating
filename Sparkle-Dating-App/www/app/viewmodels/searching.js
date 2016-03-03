@@ -5,11 +5,11 @@
         survey: ko.observable(),
         searchResults: [],
         buildUrl: function (id) {
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             return sparkle.appbaseurl() + "/Mobile/AppPicture/MainPictureDataFor/" + id + "?token=" + token;
         },
         addFavourite: function (surveyId) {
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             var that = this;
 
             var data = {
@@ -21,7 +21,7 @@
             });
 
 
-            http.put(sparkle.appbaseurl() + "/Mobile/AppContactivity/PutNewFavourite", data, { 'x-brilliance-token': token })
+            http.put(sparkle.appbaseurl() + "/Mobile/AppContactivity/PutNewFavourite", data, { 'x-sparkle-token': token })
                 .then(function (response, textStatus) {
                     $("#prof_" + surveyId).addClass('fa-check');
                     $("#prof_" + surveyId).fadeIn();
@@ -63,12 +63,12 @@
 
         },
         loadAndShowSearchHits: function (nbrOfExistingHits) {
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             var that = this;
 
             var postalCode = "" + nbrOfExistingHits;
              
-            http.get(sparkle.appbaseurl() + "/Mobile/AppSearch/Search", 'postalCode=' + postalCode, { 'x-brilliance-token': token })
+            http.get(sparkle.appbaseurl() + "/Mobile/AppSearch/Search", 'postalCode=' + postalCode, { 'x-sparkle-token': token })
                 .then(function (response, textStatus) {
                     that.searchResults = response.SearchResults;
 

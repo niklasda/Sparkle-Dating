@@ -19,7 +19,7 @@
         },
         activate: function () {
             
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             var that = this;
 
             this.postalCode.subscribe(function (newPostalCodeValue) {
@@ -41,7 +41,7 @@
                 that.lookedupCity(city);
             });
 
-            http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetMyShortSurvey", '', { 'x-brilliance-token': token })
+            http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetMyShortSurvey", '', { 'x-sparkle-token': token })
                 .then(function (response, textStatus) {
                     that.myPostalCode(response.Survey.PostalCode);
                     that.myCity(response.Survey.City);

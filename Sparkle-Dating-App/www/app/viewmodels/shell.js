@@ -5,7 +5,7 @@
         router: router,
         validToken: ko.observable(false),
             /*function () {
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             if (token && token.length === 36) {
                 return true;
             }
@@ -14,7 +14,7 @@
         }*/
         activate: function () {
             
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             if (token && token.length === 36) {
                 this.validToken(true);
                 router.map([

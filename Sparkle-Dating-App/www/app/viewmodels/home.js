@@ -6,7 +6,7 @@
         isLoggedIn: ko.observable(false),
 
         activate: function () {
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             if (token && token.length === 36) {
                 this.isLoggedIn(true);
 

@@ -9,10 +9,10 @@
         distanceMax: ko.observable(45),
         activate: function () {
 
-            var token = localStorage.getItem("x-brilliance-token");
+            var token = localStorage.getItem("x-sparkle-token");
             var that = this;
 
-            http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetSurveySettings", '', { 'x-brilliance-token': token })
+            http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetSurveySettings", '', { 'x-sparkle-token': token })
                 .then(function (response, textStatus) {
                     if (response.Settings !== undefined) {
                         that.ageMin(response.Settings.SearchAgeMin);
