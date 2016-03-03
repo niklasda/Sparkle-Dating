@@ -131,20 +131,19 @@
                 console.log("An error has occurred: " + error);
             };
 
-            navigator.camera.getPicture(win,
-                    fail, {
-                        quality: 30,
-                        destinationType: navigator.camera.DestinationType.FILE_URI,
-                        sourceType: navigator.camera.PictureSourceType.CAMERA, // PHOTOLIBRARY   /  CAMERA
-                        encodingType: Camera.EncodingType.PNG,
-                        targetWidth: 800,
-                        targetHeight: 800,
-                        correctOrientation: true
-                    });
+            navigator.camera.getPicture(win, fail, {
+                quality: 30,
+                destinationType: navigator.camera.DestinationType.FILE_URI,
+                sourceType: navigator.camera.PictureSourceType.CAMERA, // PHOTOLIBRARY   /  CAMERA
+                encodingType: navigator.camera.EncodingType.PNG,
+                targetWidth: 800,
+                targetHeight: 800,
+                correctOrientation: true
+            });
         },
         upload: function () {
             var options = new FileUploadOptions();
-            options.fileKey = "file";
+            options.fileKey = "NewPicture";
             options.fileName = this.imgurl(); //.substr(this.newPicture().name.lastIndexOf('/') +1);
 
             options.mimeType = "image/png";
@@ -167,7 +166,7 @@
             };
 
             var ft = new FileTransfer();
-            ft.upload(this.imgurl(), sparkle.appbaseurl() + "/Mobile/AppPicture/UploadPictureData", win, fail, options);
+            ft.upload(this.imgurl(), sparkle.appbaseurl() + "/Mobile/AppPicture/UploadPictureData2 ", win, fail, options);
         },
         pickFile: function () {
             var that = this;
@@ -180,15 +179,14 @@
             var fail = function(error) {
                 console.log("An error has occurred: " + error);
             };
-            navigator.camera.getPicture(win,
-                    fail, {
-                        quality: 30,
-                        destinationType: navigator.camera.DestinationType.FILE_URI,
-                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY, // PHOTOLIBRARY   /  CAMERA
-                        targetWidth: 800,
-                        targetHeight: 800,
-                        correctOrientation: true
-                    });
+            navigator.camera.getPicture(win, fail, {
+                quality: 30,
+                destinationType: navigator.camera.DestinationType.FILE_URI,
+                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY, // PHOTOLIBRARY   /  CAMERA
+                targetWidth: 800,
+                targetHeight: 800,
+                correctOrientation: true
+            });
         }
     };
 });
