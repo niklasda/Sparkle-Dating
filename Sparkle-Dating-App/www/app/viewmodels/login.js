@@ -22,7 +22,7 @@
                     userName: this.userName(),
                     password: this.password()
                 };
-                 
+                
                 var that = this;
 
                 http.post(sparkle.appbaseurl() + "/Mobile/AppAccount/LoginSubmit", loginModel, '')

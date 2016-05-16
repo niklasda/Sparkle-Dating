@@ -1,5 +1,8 @@
 ﻿<section>
-    <h2>Min profil</h2>
+    <h2>Min profil
+        <span data-bind="if: loading"><i id="spinner" class="fa fa-spinner fa-spin fa-fw"></i>
+        </span>
+    </h2>
     <br />
 
     <div style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; ">
@@ -11,7 +14,7 @@
         <div>
             <div>
 
-                <span data-bind="text: name"></span><br />
+                <span data-bind="text: name"></span><span>, </span><span data-bind="text: age"></span><span> år</span><br />
                 <span data-bind="text: postalCode"></span> <span data-bind="text: city"></span><br />
                 <span>Födelseår: </span><span data-bind="text: year"></span><br />
                 <span data-bind="if: isMale">Kön: Man</span>
@@ -20,7 +23,6 @@
                 <span data-bind="if: isMale">Söker: Kvinna</span>
                 <span data-bind="ifnot: isMale">Söker: Man</span>
                 <br />
-                <span data-bind="text: age"></span><span> år</span><br />
                 <span data-bind="text: note1"></span><br />
             </div>
             <br />

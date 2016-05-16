@@ -13,6 +13,7 @@
         note1: ko.observable(),
         imgurl: ko.observable(),
         editable: ko.observable(false),
+        loading: ko.observable(false),
         newPostalCode: ko.observable(),
         newLookedupCity: ko.observable(),
         newPicture: ko.observable(),
@@ -40,6 +41,8 @@
             var that = this;
 
             that.editable(false);
+            that.loading(true);
+
 
             http.get(sparkle.appbaseurl() + "/Mobile/AppSurvey/GetMyShortSurvey", '', { 'x-sparkle-token': token })
                 .then(function (response, textStatus) {
@@ -66,15 +69,40 @@
                         that.newLookedupCity(city);
                     });
 
+                    that.loading(false);
+
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     that.message(textStatus);
+                    that.loading(false);
                 });
         },
         edit: function () {
             this.editable(true);
         },
         save: function () {
-            this.editable(false);
+            var token = localStorage.getItem("x-sparkle-token");
+            var that = this;
+
+            that.editable(false);
+           // var postalCode = that.postalCode();
+
+            var surveyUpdate = {
+                postalCode: that.postalCode()
+            };
+
+            that.upload(that);
+
+            http.post(sparkle.appbaseurl() + "/Mobile/AppSurvey/SetSurveyPostalCode", surveyUpdate, { 'x-sparkle-token': token })
+                .then(function (response, textStatus) {
+
+                    that.message(response.Message);
+                   // window.location.href = '#signup4';
+                    // return true;
+                    //                  window.location.href = '';
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    that.message(jqXHR.responseJSON.Message);
+                    //  return false;
+                });
         },
         /*uploadImage: function () {
             //var slicedFile = file.slice(10, 30);
@@ -122,13 +150,15 @@
         openCamera: function () {
             var that = this;
 
-            var win = function(r) {
-                that.imgurl(r);
-                console.log("Code = " + r);
+            var win = function(uri) {
+                that.imgurl(uri);
+                //console.log("Code = " + r);
+                that.message(uri);
             };
 
             var fail = function(error) {
-                console.log("An error has occurred: " + error);
+                //console.log("An error has occurred: " + error);
+                that.message(error);
             };
 
             navigator.camera.getPicture(win, fail, {
@@ -141,10 +171,10 @@
                 correctOrientation: true
             });
         },
-        upload: function () {
+        upload: function (that) {
             var options = new FileUploadOptions();
             options.fileKey = "NewPicture";
-            options.fileName = this.imgurl(); //.substr(this.newPicture().name.lastIndexOf('/') +1);
+            options.fileName = that.imgurl(); //.substr(this.newPicture().name.lastIndexOf('/') +1);
 
             options.mimeType = "image/png";
             //options.params = params;
@@ -157,27 +187,31 @@
                 'x-sparkle-token': token
             };
 
-            var win = function (r) {
-                console.log("Code = " + r);
+            var win = function (fileUploadResult) {
+                that.message("Uploaded "+fileUploadResult.bytesSent+" bytes");
+            //    console.log("Code = " + r);
             };
 
-            var fail = function (error) {
-                console.log("An error has occurred: " + error);
+            var fail = function (fileTransferError) {
+                that.message("Error with code : "+fileTransferError.code);
+               // console.log("An error has occurred: " + error);
             };
 
             var ft = new FileTransfer();
-            ft.upload(this.imgurl(), sparkle.appbaseurl() + "/Mobile/AppPicture/UploadPictureData2 ", win, fail, options);
+            ft.upload(this.imgurl(), sparkle.appbaseurl() + "/Mobile/AppPicture/UploadPictureData ", win, fail, options);
         },
         pickFile: function () {
             var that = this;
 
-            var win = function(r) {
-                that.imgurl(r);
-                console.log("Code = " + r);
+            var win = function(uri) {
+                that.imgurl(uri);
+               // console.log("Code = " + r);
+                that.message(uri);
             };
 
             var fail = function(error) {
-                console.log("An error has occurred: " + error);
+              //  console.log("An error has occurred: " + error);
+                that.message(error);
             };
             navigator.camera.getPicture(win, fail, {
                 quality: 30,
